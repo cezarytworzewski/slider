@@ -9,6 +9,8 @@ const images = [
     'img/5.jpg',
     'img/6.jpg'
 ];
+//let leftKey = 37;
+let rightKey = 39;
 
 function updateSrc(src) {
     const image = document.getElementById('photo');
@@ -35,27 +37,30 @@ function rightButtonClick() {
     //console.log(index);
 }
 
-//function setInterval(updateSrc(), 3000);
+window.addEventListener('keydown', function (event) {
+    switch (event.keyCode) {
+        case 37: // Left
+            index++;
+            if (index >= images.length) {
+                index = 0;
+            }
+            updateSrc(images[index]);
+            //alert('Lewo');
+            break;
 
+        case 39: // Right
+            index++;
+            if (index >= images.length) {
+                index = 0;
+            }
+            updateSrc(images[index]);
+            //alert('Prawo');
+            break;
+
+    }
+}, true);
 
 btnLeft.addEventListener('click', leftButtonClick);
 btnRight.addEventListener('click', rightButtonClick);
 
-setInterval("leftButtonClick()", 3000);
-
-
-
-
-/*const keyLeft = document.getElementById('key-left');
-const keyRight = document.getElementById('key-right');
-
-function leftKeyPress() {
-    
-}
-
-function rightKeyPress() {
-    
-}
-
-keyLeft.addEventListener('key', leftKeyPress);
-keyRight.addEventListener('key', rightKeyPress);*/
+setInterval("rightButtonClick()", 3000);
