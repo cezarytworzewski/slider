@@ -41,7 +41,7 @@ window.addEventListener('keydown', function (event) {
     switch (event.keyCode) {
         case 37: // Left
             index++;
-            if (index >= images.length) {
+            if (index >= images.length - 1) {
                 index = 0;
             }
             updateSrc(images[index]);
@@ -60,7 +60,8 @@ window.addEventListener('keydown', function (event) {
     }
 }, true);
 
+
 btnLeft.addEventListener('click', leftButtonClick);
 btnRight.addEventListener('click', rightButtonClick);
 
-setInterval("rightButtonClick()", 3000);
+setInterval('rightButtonClick()', 3000);
