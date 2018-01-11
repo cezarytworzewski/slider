@@ -9,11 +9,11 @@ const images = [
   'img/5.jpg',
   'img/6.jpg'
 ];
-//let leftKey = 37;
-//let rightKey = 39; //podkreślenie znaczy , że nie jest używana
+const leftKeyCode = 37;
+const rightKeyCode = 39;
 
 console.log('setInterval');
-let clock = setInterval(next, 3000); //setInterva zwraca cyfrę
+let clock = setInterval(next, 3000); //setInterval zwraca cyfrę
 
 function updateSrc(src) {
   const image = document.getElementById('photo');
@@ -56,11 +56,11 @@ function next() {
 
 window.addEventListener('keydown', function (event) {
   switch (event.keyCode) {
-    case 37: // Left
+    case leftKeyCode:
       leftButtonClick();
       break;
 
-    case 39: // Right
+    case rightKeyCode:
       rightButtonClick();
       break;
 
