@@ -15,5 +15,5 @@ programowania: HTML, CSS oraz JavaScript.
 * [x] Mechanizm przełączania uruchamia się po kilku sekundach bezczynności
 * [x] Nawigacja za pomocą strzałek będących elementami strony
 * [x] Nawigacja za pomocą klawiatury
-* [ ] Wybranie konkretnego zdjęcia za pomocą kropki pod sliderem
+* [x] Wybranie konkretnego zdjęcia za pomocą kropki pod sliderem
 * [ ] Liczba slajdów powinna być elastyczna i łatwo modyfikowalna
