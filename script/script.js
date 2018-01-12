@@ -1,7 +1,7 @@
 const btnLeft = document.getElementById('btn-left');
 const btnRight = document.getElementById('btn-right');
 const dotList = document.querySelector('.dot-list');
-//console.log(button);
+
 const images = [
   'img/1.jpg',
   'img/2.jpg',
@@ -10,10 +10,21 @@ const images = [
   'img/5.jpg',
   'img/6.jpg'
 ];
+
+function createDot() {
+  // 1. Stworzyć element input typu radio z odpowiednim name
+  let dot = document.createElement('input');
+  dot.type = 'radio';
+  dot.name = 'dot';
+  // 2. Wyrenderować (stworzyć) input w liście dotList
+  dotList.appendChild(dot);
+}
+
+images.forEach(createDot);
+
 const leftKeyCode = 37;
 const rightKeyCode = 39;
 
-console.log('setInterval');
 let clock = setInterval(next, 3000); //setInterval zwraca cyfrę
 
 function updateSrc(src) {
@@ -23,12 +34,11 @@ function updateSrc(src) {
 }
 
 let index = 0;
+updateSrc(images[index]);
 
 function leftButtonClick() {
-  console.log('clearInterval');
   clearInterval(clock);
   prev();
-  console.log('setInterval');
   clock = setInterval(next, 3000);
 }
 
@@ -41,10 +51,8 @@ function prev() {
 }
 
 function rightButtonClick() {
-  console.log('clearInterval');
   clearInterval(clock);
   next();
-  console.log('setInterval');
   clock = setInterval(next, 3000);
 }
 
@@ -57,7 +65,6 @@ function next() {
   updateSrc(temp);
 }
 
-
 window.addEventListener('keydown', function (event) {
   switch (event.keyCode) {
     case leftKeyCode:
@@ -67,21 +74,22 @@ window.addEventListener('keydown', function (event) {
     case rightKeyCode:
       rightButtonClick();
       break;
-
   }
 }, true);
 
 function dotChange(evt) {
-  //console.log('dotChange', evt);
   clearInterval(clock);
-  let nodes = Array.prototype.slice.call(dotList.children);
+  let nodes = Array.from(dotList.children);
   index = nodes.indexOf(evt.target);
   updateSrc(images[index]);
   clock = setInterval(next, 3000);
 }
 
 function markDot(dotIndex) {
-  let nodes = Array.prototype.slice.call(dotList.children);
+  if (dotIndex < 0) {
+    return;
+  }
+  let nodes = Array.from(dotList.children);
   let dot = nodes[dotIndex];
   dot.checked = true;
 }

@@ -16,4 +16,4 @@ programowania: HTML, CSS oraz JavaScript.
 * [x] Nawigacja za pomocą strzałek będących elementami strony
 * [x] Nawigacja za pomocą klawiatury
 * [x] Wybranie konkretnego zdjęcia za pomocą kropki pod sliderem
-* [ ] Liczba slajdów powinna być elastyczna i łatwo modyfikowalna
+* [X] Liczba slajdów powinna być elastyczna i łatwo modyfikowalna
