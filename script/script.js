@@ -1,8 +1,8 @@
-const btnLeft = document.getElementById('btn-left');
-const btnRight = document.getElementById('btn-right');
-const dotList = document.querySelector('.dot-list');
+const lewyPrzycisk = document.getElementById('left-btn');
+const prawyPrzycisk = document.getElementById('right-btn');
+const kropkiSlider = document.querySelector('.kropki-slider');
 
-const images = [
+const tablicaZdjec = [
   'img/1.jpg',
   'img/2.jpg',
   'img/3.jpg',
@@ -11,89 +11,84 @@ const images = [
   'img/6.jpg'
 ];
 
-function createDot() {
-  // 1. Stworzyć element input typu radio z odpowiednim name
-  let dot = document.createElement('input');
-  dot.type = 'radio';
-  dot.name = 'dot';
-  // 2. Wyrenderować (stworzyć) input w liście dotList
-  dotList.appendChild(dot);
-}
-
-images.forEach(createDot);
-
-const leftKeyCode = 37;
-const rightKeyCode = 39;
-
-let clock = setInterval(next, 3000); //setInterval zwraca cyfrę
-
-function updateSrc(src) {
-  const image = document.getElementById('photo');
-  image.setAttribute('src', src);
-  markDot(index);
-}
-
 let index = 0;
-updateSrc(images[index]);
 
-function leftButtonClick() {
-  clearInterval(clock);
-  prev();
-  clock = setInterval(next, 3000);
+function aktualizacja(src) {
+  const zdjecie = document.getElementById('photo');
+  zdjecie.setAttribute('src', src);
+  podswietlKropke(index);
 }
 
-function prev() {
+function klikniecieLewyPrzycisk() {
+  clearInterval(time);
+  poprzednie();
+  time = setInterval(nastepne, 3000);
+}
+
+function kliknieciePrawyPrzycisk() {
+  clearInterval(time);
+  nastepne();
+  time = setInterval(nastepne, 3000);
+}
+
+let time = setInterval(nastepne, 3000);
+
+function poprzednie() {
   index--;
   if (index < 0) {
-    index = images.length - 1;
+    index = tablicaZdjec.length - 1;
   }
-  updateSrc(images[index]);
+  aktualizacja(tablicaZdjec[index]);
 }
 
-function rightButtonClick() {
-  clearInterval(clock);
-  next();
-  clock = setInterval(next, 3000);
-}
-
-function next() {
+function nastepne() {
   index++;
-  if (index >= images.length) {
+  if (index >= tablicaZdjec.length) {
     index = 0;
   }
-  let temp = images[index];
-  updateSrc(temp);
+  aktualizacja(tablicaZdjec[index]);
 }
 
-window.addEventListener('keydown', function (event) {
-  switch (event.keyCode) {
-    case leftKeyCode:
-      leftButtonClick();
-      break;
+const lewyKursor = 37;
+const prawyKursor = 39;
 
-    case rightKeyCode:
-      rightButtonClick();
+window.addEventListener('keydown', function (zdarzenie) {
+  switch (zdarzenie.keyCode) {
+    case lewyKursor:
+      klikniecieLewyPrzycisk();
+      break;
+    case prawyKursor:
+      kliknieciePrawyPrzycisk();
       break;
   }
 }, true);
 
-function dotChange(evt) {
-  clearInterval(clock);
-  let nodes = Array.from(dotList.children);
-  index = nodes.indexOf(evt.target);
-  updateSrc(images[index]);
-  clock = setInterval(next, 3000);
+function tworzKropki() {
+  let kropka = document.createElement('input');
+  kropka.type = 'radio';
+  kropka.name = 'kropka';
+  kropkiSlider.appendChild(kropka);
 }
 
-function markDot(dotIndex) {
-  if (dotIndex < 0) {
+tablicaZdjec.forEach(tworzKropki);
+
+function zmianaKropki(evt) {
+  clearInterval(time);
+  let nodes = Array.from(kropkiSlider.children);
+  index = nodes.indexOf(evt.target);
+  aktualizacja(tablicaZdjec[index]);
+  time = setInterval(nastepne, 3000);
+}
+
+function podswietlKropke(numer) {
+  if (numer < 0) {
     return;
   }
-  let nodes = Array.from(dotList.children);
-  let dot = nodes[dotIndex];
-  dot.checked = true;
+  let nodes = Array.from(kropkiSlider.children);
+  let kropka = nodes[numer];
+  kropka.checked = true;
 }
 
-btnLeft.addEventListener('click', leftButtonClick);
-btnRight.addEventListener('click', rightButtonClick);
-dotList.addEventListener('click', dotChange);
+lewyPrzycisk.addEventListener('click', klikniecieLewyPrzycisk);
+prawyPrzycisk.addEventListener('click', kliknieciePrawyPrzycisk);
+kropkiSlider.addEventListener('click', zmianaKropki);
