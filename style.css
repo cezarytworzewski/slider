@@ -1,0 +1,30 @@
+body {
+  background-color: cyan;
+
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  float: left;
+  text-align: center;
+}
+
+picture {
+  list-style-position: unset;
+}
+
+button {
+  background-color: coral;
+  height: 30px;
+  width: 90px;
+}
+
+section {
+  background-color: white;
+  height: 960px;
+  width: 600px;
+  position: center;
+}
