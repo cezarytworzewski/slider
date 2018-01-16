@@ -37,9 +37,9 @@ let index = 0;
 updateSrc(images[index]);
 
 function leftButtonClick() {
-  clearInterval(clock);
+  setTime();
   prev();
-  clock = setInterval(next, 3000);
+  setTime();
 }
 
 function prev() {
@@ -47,13 +47,14 @@ function prev() {
   if (index < 0) {
     index = images.length - 1;
   }
-  updateSrc(images[index]);
+  let temp = images[index];
+  updateSrc(temp);
 }
 
 function rightButtonClick() {
-  clearInterval(clock);
+  setTime();
   next();
-  clock = setInterval(next, 3000);
+  setTime();
 }
 
 function next() {
@@ -78,11 +79,12 @@ window.addEventListener('keydown', function (event) {
 }, true);
 
 function dotChange(evt) {
-  clearInterval(clock);
+  setTime();
   let nodes = Array.from(dotList.children);
   index = nodes.indexOf(evt.target);
-  updateSrc(images[index]);
-  clock = setInterval(next, 3000);
+  let temp = images[index];
+  updateSrc(temp);
+  setTime();
 }
 
 function markDot(dotIndex) {
@@ -97,3 +99,8 @@ function markDot(dotIndex) {
 btnLeft.addEventListener('click', leftButtonClick);
 btnRight.addEventListener('click', rightButtonClick);
 dotList.addEventListener('click', dotChange);
+
+function setTime() {
+  clearInterval(clock);
+  clock = setInterval(next, 3000);
+}
