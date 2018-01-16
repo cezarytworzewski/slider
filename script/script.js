@@ -1,12 +1,23 @@
 class Slider {
-  constructor() {
-  }
 
-  const btnLeft = document.querySelector('.btn-left');
-  const btnRight = document.querySelector('.btn-right');
-  const dotList = document.querySelector('.dot-list');
+  constructor(choose) {
+    this.settings = {
+      name: 'no-name',
+      element: null,
+      time: 3000
+    };
+    Object.assign(this.settings, choose);
 
-  const images = [
+    this.index = 0;
+    this.clock = null;
+
+  //const sliderTest = new Slider('czarek', 3000);
+
+  this.btnLeft = document.querySelector('.btn-left');
+  this.btnRight = document.querySelector('.btn-right');
+  this.dotList = document.querySelector('.dot-list');
+
+  this.images = [
     'img/1.jpg',
     'img/2.jpg',
     'img/3.jpg',
@@ -17,28 +28,28 @@ class Slider {
 
   function createDot() {
     // 1. Stworzyć element input typu radio z odpowiednim name
-    let dot = document.createElement('.input');
-    dot.type = 'radio';
+    this.dot = document.createElement('.input');
+    this.dot.type = 'radio';
     dot.name = 'dot';
     // 2. Wyrenderować (stworzyć) input w liście dotList
-    dotList.appendChild(dot);
+    this.dotList.appendChild(dot);
   }
 
-  images.forEach(createDot);
+  this.images.forEach(this.createDot);
 
-  const leftKeyCode = 37;
-  const rightKeyCode = 39;
+  this.leftKeyCode = 37;
+ this.rightKeyCode = 39;
 
   let clock = setInterval(next, 3000); //setInterval zwraca cyfrę
 
   function updateSrc(src) {
-    const image = document.querySelector('.photo');
-    image.setAttribute('src', src);
+    this.image = document.querySelector('.photo');
+    this.image.setAttribute('src', src);
     markDot(index);
   }
 
   let index = 0;
-  updateSrc(images[index]);
+  updateSrc(this.images[index]);
 
   function leftButtonClick() {
     setTime();
@@ -49,9 +60,9 @@ class Slider {
   function prev() {
     index--;
     if (index < 0) {
-      index = images.length - 1;
+      index = this.images.length - 1;
     }
-    let temp = images[index];
+    let temp = this.images[index];
     updateSrc(temp);
   }
 
@@ -63,7 +74,7 @@ class Slider {
 
   function next() {
     index++;
-    if (index >= images.length) {
+    if (index >= this.images.length) {
       index = 0;
     }
     let temp = images[index];
@@ -108,5 +119,5 @@ class Slider {
     clearInterval(clock);
     clock = setInterval(next, 3000);
   }
-
+  }
 }
