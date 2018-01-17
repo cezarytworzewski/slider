@@ -5,80 +5,34 @@
   <meta charset="UTF-8">
   <title>SLIDER</title>
   <link rel="stylesheet" href="style/style.css">
+
 </head>
+
 <body>
+<section>
+  <header>
+    <h1>Slider</h1>
+  </header>
 
-  <div class="main-slider-1">
-    <ul>
-      <li>
-        <button class="btn-left">LEFT</button>
-      </li>
-      <li>
-        <button class="btn-right">RIGHT</button>
-      </li>
-    </ul>
-    <picture>
-      <img src="img/1.jpg" class="photo">
-    </picture>
-    <form class="dot-list">
-    </form>
-  </div>
+  <ul>
+    <li>
+      <button class="btn-left">LEFT</button>
+    </li>
+    <li>
+      <button class="btn-right">RIGHT</button>
+    </li>
+  </ul>
 
-  <div class="main-slider-2">
-    <ul>
-      <li>
-        <button class="btn-left">LEFT</button>
-      </li>
-      <li>
-        <button class="btn-right">RIGHT</button>
-      </li>
-    </ul>
-    <picture>
-      <img src="img/1.jpg" class="photo">
-    </picture>
-    <form class="dot-list">
-    </form>
-  </div>
+  <picture>
+    <img src="img/1.jpg" class="photo">
+  </picture>
 
-  <div class="main-slider-3">
-    <ul>
-      <li>
-        <button class="btn-left">LEFT</button>
-      </li>
-      <li>
-        <button class="btn-right">RIGHT</button>
-      </li>
-    </ul>
-    <picture>
-      <img src="img/1.jpg" class="photo">
-    </picture>
+  <form class="dot-list">
 
-    <form class="dot-list">
-    </form>
-  </div>
+  </form>
+
+</section>
 
 <script src="script/script.js"></script>
-<script>
-  window.addEventListener('load', () => {
-    const slider1 = new Slider({
-      name: 'test-slider-1',
-      name: 'slider-1',
-      element: document.querySelector('.main-slider-1'),
-      time: 2000
-    });
-    const slider2 = new Slider({
-      name: 'test-slider-2',
-      name: 'slider-2',
-      element: document.querySelector('.main-slider-2'),
-      time: 3000
-    });
-    const slider3 = new Slider({
-      name: 'test-slider-3',
-      name: 'slider-3',
-      element: document.querySelector('.main-slider-3'),
-      time: 4000
-    });
-  });
-</script>
 </body>
 </html>
